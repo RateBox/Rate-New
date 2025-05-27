@@ -1,29 +1,23 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "items",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "Category",
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "Item",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
   "attributes": {
-    "Name": {
+    "Title": {
       "type": "string",
       "required": true
     },
     "Slug": {
       "type": "uid",
-      "targetField": "Name",
-      "required": false
+      "targetField": "Title"
     },
     "Description": {
       "type": "blocks"
@@ -39,7 +33,22 @@
         "audios"
       ]
     },
+    "Gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "is_Active": {
+      "type": "boolean",
+      "default": true
+    },
+    "is_Featured": {
       "type": "boolean",
       "default": true
     },
@@ -47,13 +56,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::listing.listing",
-      "mappedBy": "Category"
-    },
-    "listing_type": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::listing-type.listing-type",
-      "inversedBy": "Categories"
+      "mappedBy": "Item"
     }
   }
 }
